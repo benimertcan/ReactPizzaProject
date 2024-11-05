@@ -1,6 +1,8 @@
 import '../App.css'
 import './orderPage.css'
+import materials from '../MaterialsData'
 import { NavLink, Label, Form, Input, FormGroup } from 'reactstrap';
+import Materials from './Materials';
 
 function OrderPage() {
 
@@ -40,60 +42,72 @@ function OrderPage() {
                 <div className='formDiv'>
                     <div className='flexStart'> <h2>Position Absolute Pizza</h2>
                         <div className='displayRow productData'>
-                            <div ><h2>85.50</h2></div>
+                            <h2>85.50</h2>
                             <div className='displayRow '><p className='pt'>4.9</p><p>(200)</p></div>
                         </div>
-                        <p >Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. Kğçğk bir pizzaya bazen pizzetta denir. </p></div>
+                        <p className='flexStart'>Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. Küçük bir pizzaya bazen pizzetta denir. </p></div>
                     <div>
                         <Form>
                             <div className='displayRow spaceBetween
                            '><div className='chooseSize'>
                                     <h2>Boyut Seç<span className='colorRed'>*</span></h2>
-                                    <FormGroup check>
+                                    <Label check>
                                         <Input
-                                            name="radio1"
+                                            name="kucuk"
                                             type="radio"
                                         />
                                         {' '}
-                                        <Label check>
                                             Küçük
                                         </Label>
-                                    </FormGroup>
-                                    <FormGroup check>
+                                        <Label check>
                                         <Input
-                                            name="radio1"
+                                            name="orta"
                                             type="radio"
                                         />
                                         {' '}
-                                        <Label check>
                                             Orta
                                         </Label>
-                                    </FormGroup>
-                                    <FormGroup
-                                        check
-                                    >
+                                   <Label check>
                                         <Input
-                                            name="radio1"
+                                            name="buyuk"
                                             type="radio"
                                         />
                                         {' '}
-                                        <Label check>
+                                        
                                             Büyük
                                         </Label>
-                                    </FormGroup>
                                 </div>
                                 <div className='chooseSize'>
                                     <h2>Hamur Seç<span className='colorRed'>*</span></h2>
                                     <Input
-                                           bsSize="lg"
-                                           className="mb-3"
-                                           type="select"
+                                        bsSize="lg"
+                                        className="mb-3"
+                                        type="select"
                                     >
                                         <option>
-                                            Hamur Kalınlığı
+                                            Kalın
+                                        </option>
+                                        <option>
+                                            Normal
+                                        </option>
+                                        <option>
+                                            İnce
                                         </option>
                                     </Input>
-                                </div></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div className='flexStart'>
+                                    <h2>Ek Malzemeler</h2>
+                                    <p>En fazla 10 Malzeme seçebilirsiniz. 5</p>
+                                </div>
+                                <div  className='flexStart materialsDiv'>
+    {materials.map((material,index) => (<Materials materialName={material.materialName} key={index}/>))}
+                                </div>
+                            </div>
+                            
+
                         </Form>
                     </div>
                 </div>
