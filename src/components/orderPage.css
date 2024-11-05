@@ -8,7 +8,7 @@
     line-height: 1.5;
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-
+    min-width: 599px;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -112,7 +112,7 @@
     color: var(--color-darkGrey);
     display: flex;
     flex-direction: column;
-    width: 60vw;
+    width: 50vw;
     padding: 1rem;
 }
 
@@ -172,7 +172,7 @@ button {
 
 .orderDivIn {
     border: var(--color-lightGray) 1px solid;
-    border-radius: .1rem;
+    border-radius: .4rem;
     width: 20rem;
     padding: 2rem;
 }
@@ -190,18 +190,18 @@ footer {
     margin: 5rem;
 }
 
-@media (max-width:650px) {
+@media (max-width:600px) {
     .unitContainer{
         margin-top:13.6rem;
-        margin-right: 2rem;
     }
     .orderDivIn {
-       margin-left:-10rem ;
-        width: 20rem;
+       margin-left:-6.5rem ;
+        width: 17rem;
         margin-bottom:2rem;
     }
     .orderButton {
-        width: 10rem;
+        width: 25vw;
         height: 5vh;
+        
     }
 }

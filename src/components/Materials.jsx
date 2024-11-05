@@ -1,10 +1,10 @@
 import { Label, Input, FormGroup } from 'reactstrap';
 
-function Materials({ materialName ,index}) {
+function Materials({ materialName }) {
 
     return (
         <>
-            <FormGroup check inline key={index}>
+            <FormGroup check inline key={materialName}>
                 <Label check>
                     <Input type="checkbox" name={materialName}/>
                     {materialName}

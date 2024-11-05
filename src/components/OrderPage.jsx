@@ -15,11 +15,10 @@ function OrderPage({ pizzaName, pizzaPrice }) {
         malzemeler: [],
         özel: ""
     }
-
+    const orjPrice = parseFloat(pizzaPrice);
     const [price, setPrice] = useState(parseFloat(pizzaPrice))
     const [materialPrice, setMaterialPrice] = useState(parseFloat(0))
     const [datas, setDatas] = useState(data);
-
     const [unit, setUnit] = useState(1);
     useEffect(() => {
         console.log('Updated data:', datas);
@@ -31,7 +30,6 @@ function OrderPage({ pizzaName, pizzaPrice }) {
         const value = event.target.value;
         const type = event.target.type;
         const id = event.target.id;
-        console.log(type, name, value);
         let newData = { ...datas };
         newData.isim = pizzaName;
         setDatas(newData);
@@ -54,23 +52,40 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                 newData.malzemeler.push(name);
             }
             setDatas(newData);
-        } if (type == "text") {
+            let newMaterialPrice = newData.malzemeler.length * 5 * unit;
+            console.log(newMaterialPrice);
+            setMaterialPrice(newMaterialPrice);
+            priceChange();
+        }
+        if (type == "text") {
             newData.özel = value;
             setDatas(newData);
         }
+
+    }
+
+    function priceChange(name) {
+        setUnit((prevUnit) => {
+            let newUnit = prevUnit;
+            if (name === "-") {
+                if (newUnit > 1) {
+                    newUnit -= 1;
+                }
+            } else if (name === "+") {
+                newUnit += 1;
+            }
+            let newMatPrice = materialPrice;
+            let newPrice = orjPrice * newUnit;
+            newPrice = newPrice + newMatPrice;
+            setPrice(newPrice);
+            return newUnit;
+        });
     }
     function unitChange(event) {
         event.preventDefault();
-        const name = event.target.name;
-        if (name == "-") {
-            if (unit >= 2) {
-                setUnit(unit - 1)
-            }
-        }
-        else if (name == "+") {
-            setUnit(unit + 1)
-        }
+        priceChange(event.target.name);
     }
+
 
     return (
         <>
@@ -100,6 +115,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                 {/*Header End*/}
                 {/*/////////////////////////////////////////////*/}
                 {/*Form Start*/}
+
                 <div className='formDiv '>
                     <div className='flexStart allMargin'> <h2>{pizzaName}</h2>
                         <div className='displayRow productData allMargin'>
@@ -131,6 +147,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                                 name="radio"
                                                 type="radio"
                                                 id="Orta"
+
                                             />
                                             {' '}
 
@@ -178,7 +195,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                     <p className='allMargin'>En fazla 10 Malzeme seçebilirsiniz. 5₺</p>
                                 </div>
                                 <div className='flexStart materialsDiv allMargin'>
-                                    {materials.map((material, index) => (<Materials materialName={material.materialName} index={index} />))}
+                                    {materials.map((material, index) => (<Materials materialName={material.materialName} key={index} />))}
                                 </div>
                             </div>
                             <div className='flexStart noteDiv allMargin'>
