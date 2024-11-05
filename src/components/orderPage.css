@@ -22,9 +22,19 @@
 /*{border: 1px purple solid;}*/
 
 .pt{margin-right: 5rem;}
+.centerAll{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    
+}
 .displayRow{
     display: flex;
     flex-direction: row;
+}
+.displayCol{
+    display: flex;
+    flex-direction: column;
 }
 .spaceBetween{
     display: flex;
@@ -44,9 +54,12 @@
     align-items: center;
     font-family: var(--font-Roboto-Condensed);
     justify-content: space-between;
+    font-weight:lighter;
     
 }
-
+.allPadding{
+    padding-top:2rem ;
+}
 .header {
     background-color: var(--color-red);
     width: 100%;
@@ -97,8 +110,10 @@
 }
 .colorRed{
     color: var(--color-red);
+    font-weight: bold;
 }
 .materialsDiv{
+    width:25rem;
     height: 25vh;
     display: flex;
     flex-direction: column;
@@ -109,4 +124,36 @@
 }
 .borderBottom{
 border-bottom: var(--color-darkGrey) 1px solid;
+}
+button{
+     background-color: var(--color-yellow) !important;
+     color: var(--color-darkGrey) !important;
+     width: 2rem;
+     height: 3rem;
+}
+.state{
+    width: 2rem;
+    height: 3rem;
+    border: var(--color-darkGrey) 1px solid;
+    align-items: center;
+}
+.orderButton{
+    width: 10rem;
+    height: 5vh;
+}
+.orderDivIn{
+    border: var(--color-darkGrey) 1px solid;
+    border-radius: .5rem;
+    width: 25rem;
+    padding: 1rem;
+}
+.orderDiv{
+    margin-top: 2rem;
+}
+.colorLightGray{
+    color: var(--color-lightGray);
+    font-weight: bold;
+}
+footer{
+    margin: 5rem;
 }
