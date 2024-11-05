@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-     <OrderPage/>
+     <OrderPage pizzaName="Position Absolute Pizza" pizzaPrice="85.50"/>
     </>
   )
 }

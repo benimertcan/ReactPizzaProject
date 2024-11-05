@@ -1,18 +1,18 @@
 const materials = [
-    { materialName: "Pepperoni", state: 0 },
-    { materialName: "Sosis", state: 0 },
-    { materialName: "Kanada Jambonu", state: 0 },
-    { materialName: "Tavuk Izgara", state: 0 },
-    { materialName: "Soğan", state: 0 },
-    { materialName: "Domates", state: 0 },
-    { materialName: "Mısır", state: 0 },
-    { materialName: "Sucuk", state: 0 },
-    { materialName: "Jalepeno", state: 0 },
-    { materialName: "Sarımsak", state: 0 },
-    { materialName: "Biber", state: 0 },
-    { materialName: "Sucuk", state: 0 },
-    { materialName: "Ananas", state: 0 },
-    { materialName: "Kabak", state: 0 }
+    { materialName: "Pepperoni", state: false },
+    { materialName: "Sosis", state: false },
+    { materialName: "Kanada Jambonu", state: false },
+    { materialName: "Tavuk Izgara", state: false },
+    { materialName: "Soğan", state: false },
+    { materialName: "Domates", state: false },
+    { materialName: "Mısır", state: false },
+    { materialName: "Sucuk", state: false },
+    { materialName: "Jalepeno", state: false },
+    { materialName: "Sarımsak", state: false },
+    { materialName: "Biber", state: false },
+    { materialName: "Sucuk", state: false },
+    { materialName: "Ananas", state: false },
+    { materialName: "Kabak", state: false }
   ];
   
   export default materials; 

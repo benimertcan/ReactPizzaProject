@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Signika:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Signika:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quattrocento:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Signika:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quattrocento:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Satisfy&family=Signika:wght@300..700&display=swap');
+
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    
+
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -19,60 +24,73 @@
     --font-Quattrocento: "Quattrocento", sans-serif;
     --font-Satisfy: "Satisfy", sans-serif;
 }
+
 /*{border: 1px purple solid;}*/
 
-.pt{margin-right: 5rem;}
-.centerAll{
+
+.pt {
+    margin-right: 5rem;
+}
+
+.centerAll {
     display: flex;
     align-content: center;
     justify-content: center;
-    
+
 }
-.displayRow{
+
+.displayRow {
     display: flex;
     flex-direction: row;
 }
-.displayCol{
+
+.displayCol {
     display: flex;
     flex-direction: column;
 }
-.spaceBetween{
+
+.spaceBetween {
     display: flex;
     justify-content: space-between;
 }
 
-.flexStart{
+.flexStart {
     display: flex;
     flex-direction: column;
-   
     text-align: left;
 }
+
 .orderpage {
-    width: 100vw;
+    width: 99vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: var(--font-Roboto-Condensed);
+    font-family: var(--font-Barlow) !important;
     justify-content: space-between;
-    font-weight:lighter;
-    
+
 }
-.allPadding{
-    padding-top:2rem ;
+
+.allMargin {
+    margin-top: 2rem;
 }
+
 .header {
     background-color: var(--color-red);
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white !important;
 }
+
 .headerIn {
     width: 50vw;
 }
-.logo{
+
+.logo {
     width: 45vw;
 }
+
 .links {
     display: flex;
     flex-direction: row;
@@ -81,79 +99,109 @@
 }
 
 .links a {
-    color: white;
+    color: white !important;
     padding: 0 0.5rem;
 }
 
 .opacity {
     opacity: 0.8;
 }
-.formDiv{
+
+.formDiv {
     background-color: white;
     color: var(--color-darkGrey);
     display: flex;
     flex-direction: column;
-    width: 50vw;
+    width: 60vw;
     padding: 1rem;
 }
-.productData{
+
+.productData {
     justify-content: space-between;
     align-items: center;
     justify-items: center;
     width: 100%;
 }
-.chooseSize{
+
+.chooseSize {
     display: flex;
     flex-direction: column;
     align-items: start;
-    width: 40%;
+    width: 40vw;
 }
-.colorRed{
+
+.colorRed {
     color: var(--color-red);
     font-weight: bold;
 }
-.materialsDiv{
-    width:25rem;
-    height: 25vh;
+
+.materialsDiv {
+
+    height: 30vh;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
-.materialsDiv label{
-    margin:.5rem;
+
+.materialsDiv label {
+    margin: 1vw;
 }
-.borderBottom{
-border-bottom: var(--color-darkGrey) 1px solid;
+
+.borderBottom {
+    border-bottom: var(--color-darkGrey) 1px solid;
 }
-button{
-     background-color: var(--color-yellow) !important;
-     color: var(--color-darkGrey) !important;
-     width: 2rem;
-     height: 3rem;
+
+button {
+    background-color: var(--color-yellow) !important;
+    color: var(--color-darkGrey) !important;
+    width: 2rem;
+    height: 3rem;
 }
-.state{
+
+.state {
     width: 2rem;
     height: 3rem;
     border: var(--color-darkGrey) 1px solid;
     align-items: center;
 }
-.orderButton{
-    width: 10rem;
+
+.orderButton {
+    width: 20rem;
     height: 5vh;
 }
-.orderDivIn{
-    border: var(--color-darkGrey) 1px solid;
-    border-radius: .5rem;
-    width: 25rem;
-    padding: 1rem;
+
+.orderDivIn {
+    border: var(--color-lightGray) 1px solid;
+    border-radius: .1rem;
+    width: 20rem;
+    padding: 2rem;
 }
-.orderDiv{
+
+.orderDiv {
     margin-top: 2rem;
 }
-.colorLightGray{
+
+.colorLightGray {
     color: var(--color-lightGray);
     font-weight: bold;
 }
-footer{
+
+footer {
     margin: 5rem;
+}
+
+@media (max-width:650px) {
+    .unitContainer{
+        margin-top:13.6rem;
+        margin-right: 2rem;
+    }
+    .orderDivIn {
+       margin-left:-10rem ;
+        width: 20rem;
+        margin-bottom:2rem;
+    }
+    .orderButton {
+        width: 10rem;
+        height: 5vh;
+    }
 }
