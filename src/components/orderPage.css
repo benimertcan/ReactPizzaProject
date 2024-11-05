@@ -3,7 +3,7 @@
     line-height: 1.5;
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -20,6 +20,7 @@
     --font-Satisfy: "Satisfy", sans-serif;
 }
 /*{border: 1px purple solid;}*/
+
 .pt{margin-right: 5rem;}
 .displayRow{
     display: flex;
@@ -33,7 +34,7 @@
 .flexStart{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+   
     text-align: left;
 }
 .orderpage {
@@ -41,6 +42,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: var(--font-Roboto-Condensed);
+    justify-content: space-between;
+    
 }
 
 .header {
@@ -72,7 +76,7 @@
     opacity: 0.8;
 }
 .formDiv{
-    background-color: var(--color-bej);
+    background-color: white;
     color: var(--color-darkGrey);
     display: flex;
     flex-direction: column;
@@ -95,11 +99,14 @@
     color: var(--color-red);
 }
 .materialsDiv{
-    height: 15vh;
+    height: 25vh;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
 .materialsDiv label{
-    margin-top: 1rem;
+    margin:.5rem;
+}
+.borderBottom{
+border-bottom: var(--color-darkGrey) 1px solid;
 }

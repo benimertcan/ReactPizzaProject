@@ -3,7 +3,7 @@ import './orderPage.css'
 import materials from '../MaterialsData'
 import { NavLink, Label, Form, Input, FormGroup } from 'reactstrap';
 import Materials from './Materials';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 function OrderPage() {
 
 
@@ -51,31 +51,40 @@ function OrderPage() {
                             <div className='displayRow spaceBetween
                            '><div className='chooseSize'>
                                     <h2>Boyut Seç<span className='colorRed'>*</span></h2>
-                                    <Label check>
+
+                                    <FormGroup check>
                                         <Input
-                                            name="kucuk"
+                                            name="radio1"
                                             type="radio"
                                         />
                                         {' '}
+                                        <Label check>
                                             Küçük
                                         </Label>
-                                        <Label check>
+                                    </FormGroup>
+                                    <FormGroup check>
                                         <Input
-                                            name="orta"
+                                            name="radio1"
                                             type="radio"
                                         />
                                         {' '}
+                                        <Label check>
                                             Orta
                                         </Label>
-                                   <Label check>
+                                    </FormGroup>
+                                    <FormGroup
+                                        check
+                                        disabled
+                                    >
                                         <Input
-                                            name="buyuk"
+                                            name="radio1"
                                             type="radio"
                                         />
                                         {' '}
-                                        
+                                        <Label check>
                                             Büyük
                                         </Label>
+                                    </FormGroup>
                                 </div>
                                 <div className='chooseSize'>
                                     <h2>Hamur Seç<span className='colorRed'>*</span></h2>
@@ -102,11 +111,20 @@ function OrderPage() {
                                     <h2>Ek Malzemeler</h2>
                                     <p>En fazla 10 Malzeme seçebilirsiniz. 5</p>
                                 </div>
-                                <div  className='flexStart materialsDiv'>
-    {materials.map((material,index) => (<Materials materialName={material.materialName} key={index}/>))}
+                                <div className='flexStart materialsDiv'>
+                                    {materials.map((material, index) => (<Materials materialName={material.materialName} key={index} />))}
                                 </div>
                             </div>
-                            
+                            <div className='flexStart noteDiv'>
+                                <h2>Sipariş Notu</h2>
+                                <FormGroup>
+                                    <Input type='text'
+                                        className="mb-3"
+                                        placeholder="Siparişine eklemek istediğin  bir not var mı?"
+                                    />
+                                </FormGroup>
+                            </div>
+                            <div className='borderBottom'></div>
 
                         </Form>
                     </div>
