@@ -1,7 +1,7 @@
 import '../App.css'
 import './orderPage.css'
 import materials from '../MaterialsData'
-import { NavLink, Label, Form, Input, FormGroup, Button } from 'reactstrap';
+import { NavLink, Label, Form, Input, FormGroup, Button, FormFeedback } from 'reactstrap';
 import Materials from './Materials';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
@@ -13,18 +13,22 @@ function OrderPage({ pizzaName, pizzaPrice }) {
         boyut: "",
         hamur: "",
         malzemeler: [],
-        özel: ""
+        notext: ""
     }
     const orjPrice = parseFloat(pizzaPrice);
     const [price, setPrice] = useState(parseFloat(pizzaPrice))
     const [materialPrice, setMaterialPrice] = useState(parseFloat(0))
     const [datas, setDatas] = useState(data);
-    const [unit, setUnit] = useState(1);
-    useEffect(() => {
-        console.log('Updated data:', datas);
-
-    }, [datas]);
-
+    const [unit, setUnit] = useState(parseInt(1));
+    const [errors, setErrors] = useState({
+        materials:"",
+        note:""
+    });
+    const [isValid, setIsValid] = useState({
+        materials:false,
+        note:false
+    });
+    const [buttonState, setButtonState] = useState(true);
     function handleChange(event) {
         const name = event.target.name;
         const value = event.target.value;
@@ -52,17 +56,49 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                 newData.malzemeler.push(name);
             }
             setDatas(newData);
-            let newMaterialPrice = newData.malzemeler.length * 5 * unit;
-            console.log(newMaterialPrice);
-            setMaterialPrice(newMaterialPrice);
-            priceChange();
+            if(datas.malzemeler.length<4 ||datas.malzemeler.length>=11   ){
+                setIsValid({...isValid,materials:true})
+            }else{
+                setIsValid({...isValid,materials:false})
+            }
         }
         if (type == "text") {
-            newData.özel = value;
+            newData.notext = value;
             setDatas(newData);
+            if(newData.notext.length<5){
+                setIsValid({...isValid,note:true})
+                if(newData.notext.length==0){
+                    setIsValid({...isValid,note:false})
+                }
+            }
+            else{
+                setIsValid({...isValid,note:false})
+            }
         }
-
     }
+    useEffect(() => {
+        let newMaterialPrice = datas.malzemeler.length * 5 * unit;
+        let newPrice = orjPrice * unit + newMaterialPrice;
+        setMaterialPrice(newMaterialPrice);
+        setPrice(newPrice);
+        if(isValid.materials){
+            setErrors({...errors,materials:"En az 4, en fazla 10 seçim yapabilirsiniz!"})
+        }else{
+            setErrors({...errors,materials:""})
+        }
+        if(isValid.note){
+            setErrors({...errors,note:"Notunuz 5 karakterden kısa olamaz!"})
+        }else{
+            setErrors({...errors,note:""})
+        }
+        console.log(isValid);
+        if(isValid.materials & isValid.note){
+            setButtonState(false)
+        }else{
+            setButtonState(true)
+        }
+        
+    }, [unit, datas,isValid]);
 
     function priceChange(name) {
         setUnit((prevUnit) => {
@@ -74,16 +110,13 @@ function OrderPage({ pizzaName, pizzaPrice }) {
             } else if (name === "+") {
                 newUnit += 1;
             }
-            let newMatPrice = materialPrice;
-            let newPrice = orjPrice * newUnit;
-            newPrice = newPrice + newMatPrice;
-            setPrice(newPrice);
             return newUnit;
         });
     }
     function unitChange(event) {
         event.preventDefault();
-        priceChange(event.target.name);
+        console.log(materialPrice);
+        priceChange(event.target.name, materialPrice);
     }
 
 
@@ -127,50 +160,53 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                         <Form onChange={handleChange}>
                             <div className='displayRow allMargin 
                            '><div className='chooseSize spaceBetween'>
-                                    <h2>Boyut Seç<span className='colorRed'>*</span></h2>
+                                    <h2>Boyut Seç<span className='colorRed'> *</span></h2>
+                                    <FormGroup>
+                                        <FormGroup check>
+                                            <Label check>
+                                                <Input
+                                                    name="radio"
+                                                    type="radio"
+                                                    id="Küçük"
+                                                />
+                                                {' '}
 
-                                    <FormGroup check>
-                                        <Label check>
-                                            <Input
-                                                name="radio"
-                                                type="radio"
-                                                id="Küçük"
-                                            />
-                                            {' '}
+                                                Küçük
+                                            </Label>
+                                        </FormGroup>
+                                        <FormGroup check>
+                                            <Label check>
+                                                <Input
+                                                    name="radio"
+                                                    type="radio"
+                                                    id="Orta"
 
-                                            Küçük
-                                        </Label>
-                                    </FormGroup>
-                                    <FormGroup check>
-                                        <Label check>
-                                            <Input
-                                                name="radio"
-                                                type="radio"
-                                                id="Orta"
+                                                />
+                                                {' '}
 
-                                            />
-                                            {' '}
+                                                Orta
+                                            </Label>
+                                        </FormGroup>
+                                        <FormGroup
+                                            check
+                                        ><Label check>
+                                                <Input
+                                                    name="radio"
+                                                    type="radio"
+                                                    id="Büyük"
+                                                />
+                                                {' '}
 
-                                            Orta
-                                        </Label>
-                                    </FormGroup>
-                                    <FormGroup
-                                        check
-                                        disabled
-                                    ><Label check>
-                                            <Input
-                                                name="radio"
-                                                type="radio"
-                                                id="Büyük"
-                                            />
-                                            {' '}
-
-                                            Büyük
-                                        </Label>
+                                                Büyük
+                                            </Label>
+                                        </FormGroup>
+                                        <FormFeedback invalid>
+                                            Lütfen bir seçim yap!
+                                        </FormFeedback>
                                     </FormGroup>
                                 </div>
                                 <div className='chooseSize'>
-                                    <h2>Hamur Seç<span className='colorRed'>*</span></h2>
+                                    <h2>Hamur Seç<span className='colorRed'> *</span></h2>
                                     <Input
                                         bsSize="lg"
                                         className="mb-3"
@@ -195,8 +231,14 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                     <p className='allMargin'>En fazla 10 Malzeme seçebilirsiniz. 5₺</p>
                                 </div>
                                 <div className='flexStart materialsDiv allMargin'>
-                                    {materials.map((material, index) => (<Materials materialName={material.materialName} key={index} />))}
+                                    {materials.map((material, index) => (<Materials materialName={material.materialName} key={index} isvalid={isValid.materials} />))}
+                                    
                                 </div>
+                                {isValid.materials && (
+                        <span className='colorRed flexStart'>
+                           {errors.materials}
+                        </span>
+                    )}
                             </div>
                             <div className='flexStart noteDiv allMargin'>
                                 <h2 >Sipariş Notu</h2>
@@ -206,6 +248,11 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                         placeholder="Siparişine eklemek istediğin bir not var mı?"
                                     />
                                 </FormGroup>
+                                {isValid.note && (
+                        <span className='colorRed flexStart'>
+                            {errors.note}
+                        </span>
+                    )}
                             </div>
                             <div className='borderBottom'></div>
 
@@ -236,9 +283,10 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div >
+                                    <div className='displayCol'>
                                         <Button
                                             className='orderButton'
+                                            disabled={buttonState}
                                         >
                                             SİPARİŞ VER
                                         </Button>

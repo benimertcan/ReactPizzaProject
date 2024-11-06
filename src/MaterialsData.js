@@ -10,7 +10,6 @@ const materials = [
     { materialName: "Jalepeno", state: false },
     { materialName: "Sarımsak", state: false },
     { materialName: "Biber", state: false },
-    { materialName: "Sucuk", state: false },
     { materialName: "Ananas", state: false },
     { materialName: "Kabak", state: false }
   ];
