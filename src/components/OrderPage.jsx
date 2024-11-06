@@ -11,7 +11,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
     const data = {
         isim: "",
         boyut: "",
-        hamur: "",
+        hamur: "Normal",
         malzemeler: [],
         notext: ""
     }
@@ -20,13 +20,10 @@ function OrderPage({ pizzaName, pizzaPrice }) {
     const [materialPrice, setMaterialPrice] = useState(parseFloat(0))
     const [datas, setDatas] = useState(data);
     const [unit, setUnit] = useState(parseInt(1));
-    const [errors, setErrors] = useState({
-        materials:"",
-        note:""
-    });
     const [isValid, setIsValid] = useState({
-        materials:false,
-        note:false
+        materials:true,
+        note:false,
+        size:false
     });
     const [buttonState, setButtonState] = useState(true);
     function handleChange(event) {
@@ -39,7 +36,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
         setDatas(newData);
         if (type == "radio") {
             newData.boyut = id;
-            setDatas(newData);
+            setDatas(newData); 
         }
         if (type == "select-one") {
             newData.hamur = value;
@@ -75,30 +72,29 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                 setIsValid({...isValid,note:false})
             }
         }
+      
     }
+
+    useEffect(() => {
+        if(!isValid.materials && !isValid.note  && !isValid.size ){
+            setButtonState(false)
+        }else{
+            setButtonState(true)
+        }
+    }, [isValid]);
+
     useEffect(() => {
         let newMaterialPrice = datas.malzemeler.length * 5 * unit;
         let newPrice = orjPrice * unit + newMaterialPrice;
         setMaterialPrice(newMaterialPrice);
         setPrice(newPrice);
-        if(isValid.materials){
-            setErrors({...errors,materials:"En az 4, en fazla 10 seçim yapabilirsiniz!"})
+        if(datas.boyut==""){
+            setIsValid({...isValid,size:true})
         }else{
-            setErrors({...errors,materials:""})
+            setIsValid({...isValid,size:false})
         }
-        if(isValid.note){
-            setErrors({...errors,note:"Notunuz 5 karakterden kısa olamaz!"})
-        }else{
-            setErrors({...errors,note:""})
-        }
-        console.log(isValid);
-        if(isValid.materials & isValid.note){
-            setButtonState(false)
-        }else{
-            setButtonState(true)
-        }
-        
-    }, [unit, datas,isValid]);
+    }, [unit, datas]);
+ 
 
     function priceChange(name) {
         setUnit((prevUnit) => {
@@ -115,8 +111,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
     }
     function unitChange(event) {
         event.preventDefault();
-        console.log(materialPrice);
-        priceChange(event.target.name, materialPrice);
+        priceChange(event.target.name);
     }
 
 
@@ -159,15 +154,17 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                     <div>
                         <Form onChange={handleChange}>
                             <div className='displayRow allMargin 
-                           '><div className='chooseSize spaceBetween'>
+                           '><div className='chooseSize flexStart'>
                                     <h2>Boyut Seç<span className='colorRed'> *</span></h2>
-                                    <FormGroup>
+                                    <FormGroup >
                                         <FormGroup check>
                                             <Label check>
                                                 <Input
                                                     name="radio"
                                                     type="radio"
                                                     id="Küçük"
+                                                    invalid={isValid.size}
+                                         
                                                 />
                                                 {' '}
 
@@ -180,7 +177,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                                     name="radio"
                                                     type="radio"
                                                     id="Orta"
-
+                                                    invalid={isValid.size}
                                                 />
                                                 {' '}
 
@@ -194,15 +191,18 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                                     name="radio"
                                                     type="radio"
                                                     id="Büyük"
+                                                    invalid={isValid.size}
                                                 />
                                                 {' '}
 
                                                 Büyük
                                             </Label>
                                         </FormGroup>
-                                        <FormFeedback invalid>
-                                            Lütfen bir seçim yap!
-                                        </FormFeedback>
+                                        {isValid.size && (
+                        <span className='colorRed flexStart'>
+                           Boyut seçmelisiniz!
+                        </span>
+                    )}
                                     </FormGroup>
                                 </div>
                                 <div className='chooseSize'>
@@ -211,7 +211,9 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                         bsSize="lg"
                                         className="mb-3"
                                         type="select"
+                                        defaultValue={datas.hamur}
                                     >
+                                         
                                         <option >
                                             Kalın
                                         </option>
@@ -222,6 +224,11 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                             İnce
                                         </option>
                                     </Input>
+                                    {isValid.dough && (
+                        <span className='colorRed flexStart'>
+                           Hamur seçmelisiniz
+                        </span>
+                    )}
                                 </div>
                             </div>
 
@@ -236,7 +243,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                 </div>
                                 {isValid.materials && (
                         <span className='colorRed flexStart'>
-                           {errors.materials}
+                           En az 4, en fazla 10 seçim yapabilirsiniz!
                         </span>
                     )}
                             </div>
@@ -246,11 +253,12 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                     <Input type='text'
                                         className="mb-3"
                                         placeholder="Siparişine eklemek istediğin bir not var mı?"
+                                        invalid={isValid.note}
                                     />
                                 </FormGroup>
                                 {isValid.note && (
                         <span className='colorRed flexStart'>
-                            {errors.note}
+                            Notunuz 5 karakterden kısa olamaz!
                         </span>
                     )}
                             </div>
