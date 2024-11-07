@@ -9,7 +9,8 @@ import { useEffect, useState } from 'react';
 
 function OrderPage({ pizzaName, pizzaPrice }) {
     const data = {
-        isim: "",
+        isim:"",
+        pizzaIsim: "",
         boyut: "",
         hamur: "Normal",
         malzemeler: [],
@@ -23,7 +24,8 @@ function OrderPage({ pizzaName, pizzaPrice }) {
     const [isValid, setIsValid] = useState({
         materials:true,
         note:false,
-        size:false
+        size:false,
+        name:false
     });
     const [buttonState, setButtonState] = useState(true);
     function handleChange(event) {
@@ -32,7 +34,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
         const type = event.target.type;
         const id = event.target.id;
         let newData = { ...datas };
-        newData.isim = pizzaName;
+        newData.pizzaIsim = pizzaName;
         setDatas(newData);
         if (type == "radio") {
             newData.boyut = id;
@@ -60,8 +62,12 @@ function OrderPage({ pizzaName, pizzaPrice }) {
             }
         }
         if (type == "text") {
-            newData.notext = value;
-            setDatas(newData);
+            if(name=="buyerName"){
+                newData.isim=value;
+            }
+            if(name=="not"){
+                newData.notext = value;
+            }
             if(newData.notext.length<5){
                 setIsValid({...isValid,note:true})
                 if(newData.notext.length==0){
@@ -71,12 +77,18 @@ function OrderPage({ pizzaName, pizzaPrice }) {
             else{
                 setIsValid({...isValid,note:false})
             }
+            if(newData.isim.length==0){
+                setIsValid({...isValid,name:true})
+            }else{
+                setIsValid({...isValid,name:false})
+            }
+            setDatas(newData);
         }
       
     }
 
     useEffect(() => {
-        if(!isValid.materials && !isValid.note  && !isValid.size ){
+        if(!isValid.materials && !isValid.note  && !isValid.size && !isValid.name ){
             setButtonState(false)
         }else{
             setButtonState(true)
@@ -153,8 +165,26 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                         <p className='flexStart allMargin'>Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. Küçük bir pizzaya bazen pizzetta denir. </p></div>
                     <div>
                         <Form onChange={handleChange}>
+                        <div className='flexStart noteDiv allMargin'>
+                                <h2 >İsim</h2>
+                                <FormGroup >
+                                    <Input type='text'
+                                        className="mb-3"
+                                        placeholder="Adınız A.S.İ.Z mi?"
+                                        invalid={isValid.name}
+                                        name="buyerName"
+                                    />
+                                </FormGroup>
+                                {isValid.name && (
+                        <span className='colorRed flexStart'>
+                            Lütfen bir isim girin.
+                        </span>
+                    )}
+                            </div>
                             <div className='displayRow allMargin 
-                           '><div className='chooseSize flexStart'>
+                           '>
+                            
+                            <div className='chooseSize flexStart'>
                                     <h2>Boyut Seç<span className='colorRed'> *</span></h2>
                                     <FormGroup >
                                         <FormGroup check>
@@ -254,6 +284,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                         className="mb-3"
                                         placeholder="Siparişine eklemek istediğin bir not var mı?"
                                         invalid={isValid.note}
+                                        name="not"
                                     />
                                 </FormGroup>
                                 {isValid.note && (
