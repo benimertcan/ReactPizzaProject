@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Signika:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Signika:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quattrocento:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Signika:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quattrocento:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Satisfy&family=Signika:wght@300..700&display=swap');
+
+
+:root {
+    --color-yellow: #FDC913;
+    --color-darkGrey: #1A1A1A;
+    --color-bej: #FAF7F2;
+    --font-Barlow: "Barlow", sans-serif;
+}
+
+header{
+    background-image: url("public/homepage/home-banner.png");
+    width:100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60rem;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.logo{
+    width: 100rem;
+}
+.home{
+    margin-top: 1rem;
+    width: 60vw;
+    min-height: 40vh;
+    
+}
+.text{
+    font-family: var(--font-Barlow);
+    color: var(--color-bej);
+    font-size: 4rem;
+    line-height: 92px;
+    
+}
+.button{
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--color-darkGrey);
+    background-color: var(--color-yellow);
+    border-radius: 1rem;
+    padding: .5rem 1.5rem;
+    font-family: var(--font-Barlow);
+}

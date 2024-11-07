@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import axios from 'axios';
+import afterSubmit from './OrderSubmit';
 
 function OrderPage({ pizzaName, pizzaPrice }) {
     const data = {
@@ -131,7 +132,9 @@ function OrderPage({ pizzaName, pizzaPrice }) {
     function onSubmit(event) {
         event.preventDefault();
         const url = "https://reqres.in/api/pizza"
-        axios.post(url, datas).then((response) => {
+        axios
+        .post(url, datas)
+        .then((response) => {
             console.log(response)
         }).catch((error) => {
             console.log(error)
