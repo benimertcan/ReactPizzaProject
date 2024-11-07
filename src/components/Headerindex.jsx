@@ -1,17 +1,22 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import '../Reset.css'; 
-import './Headerindex.css'
-import { Button } from 'bootstrap';
+import '../Reset.css';
+import './HomePage.css'
+import { Button } from 'reactstrap';
 function Headerindex() {
     return (
         <header>
-           
-           <div className='home'>
-           <img className='logo' src='/homepage/logo.svg' alt='Logo' />
-            <p className='text'>KOD ACIKTIRIR PİZZA, DOYURUR</p>
-            <a className='button'>ACIKTIM</a>
-           </div>
+
+            <div className='home'>
+                <img className='logo' src='/homepage/logo.svg' alt='Logo' />
+                <p className='text'>KOD ACIKTIRIR PİZZA, DOYURUR</p>
+                <Button
+                    className='aciktimButton'
+
+                >
+                    ACIKTIM
+                </Button>
+            </div>
         </header>
     );
 }
