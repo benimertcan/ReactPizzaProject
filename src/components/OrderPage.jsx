@@ -1,15 +1,16 @@
 import '../App.css'
 import './orderPage.css'
 import materials from '../MaterialsData'
-import { NavLink, Label, Form, Input, FormGroup, Button, FormFeedback } from 'reactstrap';
+import { NavLink, Label, Form, Input, FormGroup, Button } from 'reactstrap';
 import Materials from './Materials';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
-
+import React from 'react';
+import axios from 'axios';
 
 function OrderPage({ pizzaName, pizzaPrice }) {
     const data = {
-        isim:"",
+        isim: "",
         pizzaIsim: "",
         boyut: "",
         hamur: "Normal",
@@ -22,12 +23,13 @@ function OrderPage({ pizzaName, pizzaPrice }) {
     const [datas, setDatas] = useState(data);
     const [unit, setUnit] = useState(parseInt(1));
     const [isValid, setIsValid] = useState({
-        materials:true,
-        note:false,
-        size:false,
-        name:false
+        materials: true,
+        note: false,
+        size: false,
+        name: true
     });
     const [buttonState, setButtonState] = useState(true);
+
     function handleChange(event) {
         const name = event.target.name;
         const value = event.target.value;
@@ -38,7 +40,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
         setDatas(newData);
         if (type == "radio") {
             newData.boyut = id;
-            setDatas(newData); 
+            setDatas(newData);
         }
         if (type == "select-one") {
             newData.hamur = value;
@@ -55,42 +57,42 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                 newData.malzemeler.push(name);
             }
             setDatas(newData);
-            if(datas.malzemeler.length<4 ||datas.malzemeler.length>=11   ){
-                setIsValid({...isValid,materials:true})
-            }else{
-                setIsValid({...isValid,materials:false})
+            if (datas.malzemeler.length < 4 || datas.malzemeler.length >= 11) {
+                setIsValid({ ...isValid, materials: true })
+            } else {
+                setIsValid({ ...isValid, materials: false })
             }
         }
         if (type == "text") {
-            if(name=="buyerName"){
-                newData.isim=value;
+            if (name == "buyerName") {
+                newData.isim = value;
             }
-            if(name=="not"){
+            if (name == "not") {
                 newData.notext = value;
             }
-            if(newData.notext.length<5){
-                setIsValid({...isValid,note:true})
-                if(newData.notext.length==0){
-                    setIsValid({...isValid,note:false})
+            if (newData.notext.length < 5) {
+                setIsValid({ ...isValid, note: true })
+                if (newData.notext.length == 0) {
+                    setIsValid({ ...isValid, note: false })
                 }
             }
-            else{
-                setIsValid({...isValid,note:false})
+            else {
+                setIsValid({ ...isValid, note: false })
             }
-            if(newData.isim.length==0){
-                setIsValid({...isValid,name:true})
-            }else{
-                setIsValid({...isValid,name:false})
+            if (newData.isim.length == 0) {
+                setIsValid({ ...isValid, name: true })
+            } else {
+                setIsValid({ ...isValid, name: false })
             }
             setDatas(newData);
         }
-      
+
     }
 
     useEffect(() => {
-        if(!isValid.materials && !isValid.note  && !isValid.size && !isValid.name ){
+        if (!isValid.materials && !isValid.note && !isValid.size && !isValid.name) {
             setButtonState(false)
-        }else{
+        } else {
             setButtonState(true)
         }
     }, [isValid]);
@@ -100,13 +102,12 @@ function OrderPage({ pizzaName, pizzaPrice }) {
         let newPrice = orjPrice * unit + newMaterialPrice;
         setMaterialPrice(newMaterialPrice);
         setPrice(newPrice);
-        if(datas.boyut==""){
-            setIsValid({...isValid,size:true})
-        }else{
-            setIsValid({...isValid,size:false})
+        if (datas.boyut == "") {
+            setIsValid({ ...isValid, size: true })
+        } else {
+            setIsValid({ ...isValid, size: false })
         }
     }, [unit, datas]);
- 
 
     function priceChange(name) {
         setUnit((prevUnit) => {
@@ -121,11 +122,21 @@ function OrderPage({ pizzaName, pizzaPrice }) {
             return newUnit;
         });
     }
+
     function unitChange(event) {
         event.preventDefault();
         priceChange(event.target.name);
     }
 
+    function onSubmit(event) {
+        event.preventDefault();
+        const url = "https://reqres.in/api/pizza"
+        axios.post(url, datas).then((response) => {
+            console.log(response)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
 
     return (
         <>
@@ -162,10 +173,11 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                             <h2>{pizzaPrice}₺</h2>
                             <div className='displayRow '><p className='pt'>4.9</p><p>(200)</p></div>
                         </div>
-                        <p className='flexStart allMargin'>Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. Küçük bir pizzaya bazen pizzetta denir. </p></div>
+                        <p className='flexStart allMargin'>Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. Küçük bir pizzaya bazen pizzetta denir. </p>
+                    </div>
                     <div>
-                        <Form onChange={handleChange}>
-                        <div className='flexStart noteDiv allMargin'>
+                        <Form onChange={handleChange} onSubmit={onSubmit}>
+                            <div className='flexStart noteDiv allMargin'>
                                 <h2 >İsim</h2>
                                 <FormGroup >
                                     <Input type='text'
@@ -176,15 +188,15 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                     />
                                 </FormGroup>
                                 {isValid.name && (
-                        <span className='colorRed flexStart'>
-                            Lütfen bir isim girin.
-                        </span>
-                    )}
+                                    <span className='colorRed flexStart'>
+                                        Lütfen bir isim girin.
+                                    </span>
+                                )}
                             </div>
                             <div className='displayRow allMargin 
                            '>
-                            
-                            <div className='chooseSize flexStart'>
+
+                                <div className='chooseSize flexStart'>
                                     <h2>Boyut Seç<span className='colorRed'> *</span></h2>
                                     <FormGroup >
                                         <FormGroup check>
@@ -194,7 +206,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                                     type="radio"
                                                     id="Küçük"
                                                     invalid={isValid.size}
-                                         
+
                                                 />
                                                 {' '}
 
@@ -229,10 +241,10 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                             </Label>
                                         </FormGroup>
                                         {isValid.size && (
-                        <span className='colorRed flexStart'>
-                           Boyut seçmelisiniz!
-                        </span>
-                    )}
+                                            <span className='colorRed flexStart'>
+                                                Boyut seçmelisiniz!
+                                            </span>
+                                        )}
                                     </FormGroup>
                                 </div>
                                 <div className='chooseSize'>
@@ -243,7 +255,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                         type="select"
                                         defaultValue={datas.hamur}
                                     >
-                                         
+
                                         <option >
                                             Kalın
                                         </option>
@@ -255,10 +267,10 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                         </option>
                                     </Input>
                                     {isValid.dough && (
-                        <span className='colorRed flexStart'>
-                           Hamur seçmelisiniz
-                        </span>
-                    )}
+                                        <span className='colorRed flexStart'>
+                                            Hamur seçmelisiniz
+                                        </span>
+                                    )}
                                 </div>
                             </div>
 
@@ -269,13 +281,13 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                 </div>
                                 <div className='flexStart materialsDiv allMargin'>
                                     {materials.map((material, index) => (<Materials materialName={material.materialName} key={index} isvalid={isValid.materials} />))}
-                                    
+
                                 </div>
                                 {isValid.materials && (
-                        <span className='colorRed flexStart'>
-                           En az 4, en fazla 10 seçim yapabilirsiniz!
-                        </span>
-                    )}
+                                    <span className='colorRed flexStart'>
+                                        En az 4, en fazla 10 seçim yapabilirsiniz!
+                                    </span>
+                                )}
                             </div>
                             <div className='flexStart noteDiv allMargin'>
                                 <h2 >Sipariş Notu</h2>
@@ -288,10 +300,10 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                     />
                                 </FormGroup>
                                 {isValid.note && (
-                        <span className='colorRed flexStart'>
-                            Notunuz 5 karakterden kısa olamaz!
-                        </span>
-                    )}
+                                    <span className='colorRed flexStart'>
+                                        Notunuz 5 karakterden kısa olamaz!
+                                    </span>
+                                )}
                             </div>
                             <div className='borderBottom'></div>
 
@@ -326,6 +338,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                                         <Button
                                             className='orderButton'
                                             disabled={buttonState}
+                                            
                                         >
                                             SİPARİŞ VER
                                         </Button>
