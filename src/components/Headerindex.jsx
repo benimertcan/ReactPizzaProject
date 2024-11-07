@@ -5,7 +5,7 @@ import './HomePage.css'
 import { Button } from 'reactstrap';
 function Headerindex() {
     return (
-        <header>
+        <header className='homePageHeader'>
 
             <div className='home'>
                 <img className='logo' src='/homepage/logo.svg' alt='Logo' />

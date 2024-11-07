@@ -74,7 +74,7 @@
     margin-top: 2rem;
 }
 
-.header {
+.orderHeader {
     background-color: var(--color-red);
     width: 100%;
     display: flex;

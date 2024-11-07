@@ -145,7 +145,7 @@ function OrderPage({ pizzaName, pizzaPrice }) {
         <>
             <div className='orderpage'>
                 {/*Header Start*/}
-                <header className='header'>
+                <header className='orderHeader'>
                     <div className='headerIn'>
                         <img className='logo' src='public\homepage\logo.svg' />
                         <div className='links'>

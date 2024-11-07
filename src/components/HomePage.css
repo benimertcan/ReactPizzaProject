@@ -26,7 +26,7 @@
 }
 
 *{border: 1px purple solid;}
-header{
+.homePageHeader{
     background-image: url("public/homepage/home-banner.png");
     width:100vw;
     display: flex;
@@ -35,6 +35,7 @@ header{
     height: 60rem;
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 .logo{
     width: 100rem;
@@ -56,7 +57,6 @@ header{
     font-size: 1.3rem;
     text-decoration: none;
     color: var(--color-darkGrey);
-    background-color: var(--color-yellow);
     border-radius: 1rem;
     font-family: var(--font-Barlow);
     width: 10rem;
@@ -79,6 +79,19 @@ header{
     align-items: center;
     justify-content: center;
 }
+.spaceBetween{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+ .displayCol{
+    display: flex;
+    flex-direction: column;
+ }
+.flexStart{
+    display: flex;
+    align-items: flex-start;
+}
 .menuDiv{
     margin:2rem ;
     width: 70vw;
@@ -87,4 +100,63 @@ header{
     flex-wrap: wrap;
     align-self: center;
     justify-content: space-between;
+}
+.bigCard{
+    background-image: url("public/products/cta/kart-1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 60vw;
+    height: 25vh;
+    margin: 2rem;
+    border-radius: 1rem;
+}
+.bigCard h1{
+    margin: 1rem;
+    font-family: var(--font-Quattrocento);
+    color: white;
+    font-size: 2.4rem;
+    width: 10rem;
+    font-weight: 600;
+}
+.bigCard p{
+    margin-left: 1rem;
+    color: white;
+    font-family: var(--font-Barlow);
+}
+.pizzaOrderButton{
+    background-color: white !important ;
+    color: var(--color-red) !important;
+    font-family: var(--font-Barlow);
+    width: 10rem;
+    border-radius: 1.5rem;
+    font-weight: 500;
+    margin: 1rem;
+}
+.lowCard{
+    background-image: url("public/products/cta/kart-2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 60vw;
+    height: 20vh;
+    margin-bottom: 1.5rem ;
+    border-radius: 1rem;
+}
+.lowCard h1{
+    margin: 1rem;
+    font-family: var(--font-Barlow);
+    color: white;
+    font-size: 1.5rem;
+    width: 10rem;
+    font-weight: 500;
+}
+.lowCard h1 span{
+    color: var(--color-red);
+}
+.lowCard2{
+    background-image: url("public/products/cta/kart-3.png");
+}
+.darkg{
+    color: var(--color-darkGrey) !important;
 }
