@@ -7,21 +7,30 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import axios from 'axios';
-import afterSubmit from './OrderSubmit';
+import Footer from './Footer';
+import { useNavigate } from 'react-router-dom';
 
-function OrderPage({ pizzaName, pizzaPrice }) {
-    const data = {
-        isim: "",
-        pizzaIsim: "",
-        boyut: "",
-        hamur: "Normal",
-        malzemeler: [],
-        notext: ""
+function OrderPage({ pizzaData,setChoosenOne }) {
+    const navigate = useNavigate(); 
+
+    const homePage = () => {
+       
+        navigate("/");
     }
+    const orderPage = () => {
+       
+        navigate("/order");
+    }
+    const orderCompleted = () => {
+       
+        navigate("/order-completed");
+    }
+    
+    const {isim,boyut,hamur,pizzaName,pizzaPrice,malzemeler,notext}=pizzaData;
     const orjPrice = parseFloat(pizzaPrice);
     const [price, setPrice] = useState(parseFloat(pizzaPrice))
     const [materialPrice, setMaterialPrice] = useState(parseFloat(0))
-    const [datas, setDatas] = useState(data);
+    const [datas, setDatas] = useState(pizzaData);
     const [unit, setUnit] = useState(parseInt(1));
     const [isValid, setIsValid] = useState({
         materials: true,
@@ -30,14 +39,16 @@ function OrderPage({ pizzaName, pizzaPrice }) {
         name: true
     });
     const [buttonState, setButtonState] = useState(true);
-
+    useEffect(()=>{
+        orderPage()
+    },[])
     function handleChange(event) {
         const name = event.target.name;
         const value = event.target.value;
         const type = event.target.type;
         const id = event.target.id;
         let newData = { ...datas };
-        newData.pizzaIsim = pizzaName;
+        newData.pizzaName = pizzaName;
         setDatas(newData);
         if (type == "radio") {
             newData.boyut = id;
@@ -99,10 +110,12 @@ function OrderPage({ pizzaName, pizzaPrice }) {
     }, [isValid]);
 
     useEffect(() => {
+
         let newMaterialPrice = datas.malzemeler.length * 5 * unit;
         let newPrice = orjPrice * unit + newMaterialPrice;
         setMaterialPrice(newMaterialPrice);
         setPrice(newPrice);
+        
         if (datas.boyut == "") {
             setIsValid({ ...isValid, size: true })
         } else {
@@ -130,12 +143,15 @@ function OrderPage({ pizzaName, pizzaPrice }) {
     }
 
     function onSubmit(event) {
+        
         event.preventDefault();
         const url = "https://reqres.in/api/pizza"
         axios
         .post(url, datas)
         .then((response) => {
+            setChoosenOne(datas)
             console.log(response)
+            orderCompleted();
         }).catch((error) => {
             console.log(error)
         })
@@ -151,15 +167,16 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                         <div className='links'>
                             <NavLink
                                 className='opacity'
-                                href="#"
-
+                              
+                                onClick={homePage}
                             >
                                 Anasayfa
                             </NavLink>
                             -
                             <NavLink
                                 active
-                                href="#"
+                              
+                                onClick={orderPage}
                             >
                                 Sipariş Oluştur
                             </NavLink>
@@ -353,10 +370,9 @@ function OrderPage({ pizzaName, pizzaPrice }) {
                 </div>
                 {/*Form End*/}
                 {/*/////////////////////////////////////////////*/}
-                <footer>
-
-                </footer>
+                
             </div >
+            <Footer/>
         </>
     )
 }

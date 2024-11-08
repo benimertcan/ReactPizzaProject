@@ -25,10 +25,9 @@
     --font-Satisfy: "Satisfy", sans-serif;
 }
 
-*{border: 1px purple solid;}
-.homePageHeader{
+/*{border: 1px purple solid;}*/
+.homePageHeader {
     background-image: url("public/homepage/home-banner.png");
-    width:100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,23 +36,27 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-.logo{
+
+.logo {
     width: 100rem;
 }
-.home{
+
+.home {
     margin-top: 1rem;
     width: 60vw;
     min-height: 40vh;
-    
+
 }
-.text{
+
+.text {
     font-family: var(--font-Barlow);
     color: var(--color-bej);
     font-size: 4rem;
     line-height: 1.3em;
-    
+
 }
-.aciktimButton{
+
+.aciktimButton {
     font-size: 1.3rem;
     text-decoration: none;
     color: var(--color-darkGrey);
@@ -61,7 +64,8 @@
     font-family: var(--font-Barlow);
     width: 10rem;
 }
-.menuButton{
+
+.menuButton {
     font-size: 1.3rem;
     text-decoration: none;
     color: var(--color-darkGrey);
@@ -71,47 +75,80 @@
     align-items: center;
     margin: .5rem 0;
 }
-.menuButton img{
+
+.menuButton img {
     margin-right: .5rem;
 }
-.center{
+
+.center {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.spaceBetween{
+
+.spaceBetween {
     display: flex;
-    align-items: center;
+
     justify-content: space-between;
 }
- .displayCol{
+
+.displayCol {
     display: flex;
-    flex-direction: column;
- }
-.flexStart{
+    flex-direction: column !important;
+}
+
+.displayRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.flexStart {
     display: flex;
     align-items: flex-start;
 }
-.menuDiv{
-    margin:2rem ;
-    width: 70vw;
+
+.flexWrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menuDiv {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
     flex-wrap: wrap;
-    align-self: center;
-    justify-content: space-between;
+    width: 60vw;
 }
-.bigCard{
+
+.middleSection {
+    width: 60vw;
+    display: flex;
+    justify-self: center;
+    margin: 1rem 0;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+}
+
+.cards div {
+    padding: .5rem;
+}
+
+.bigCard {
     background-image: url("public/products/cta/kart-1.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 60vw;
-    height: 25vh;
-    margin: 2rem;
+    height: 40vh;
     border-radius: 1rem;
+    width: 30vw;
 }
-.bigCard h1{
+
+.bigCard h1 {
     margin: 1rem;
     font-family: var(--font-Quattrocento);
     color: white;
@@ -119,31 +156,35 @@
     width: 10rem;
     font-weight: 600;
 }
-.bigCard p{
+
+.bigCard p {
+    margin: 0;
     margin-left: 1rem;
     color: white;
     font-family: var(--font-Barlow);
 }
-.pizzaOrderButton{
-    background-color: white !important ;
+
+.pizzaOrderButton {
+    background-color: white !important;
     color: var(--color-red) !important;
     font-family: var(--font-Barlow);
-    width: 10rem;
+    width: 7rem;
     border-radius: 1.5rem;
     font-weight: 500;
-    margin: 1rem;
+    margin: .5rem;
 }
-.lowCard{
+
+.lowCard {
     background-image: url("public/products/cta/kart-2.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 60vw;
     height: 20vh;
-    margin-bottom: 1.5rem ;
     border-radius: 1rem;
+    width: 30vw;
 }
-.lowCard h1{
+
+.lowCard h1 {
     margin: 1rem;
     font-family: var(--font-Barlow);
     color: white;
@@ -151,12 +192,111 @@
     width: 10rem;
     font-weight: 500;
 }
-.lowCard h1 span{
+
+.lowCard h1 span {
     color: var(--color-red);
 }
-.lowCard2{
+
+.lowCard2 {
     background-image: url("public/products/cta/kart-3.png");
 }
-.darkg{
+
+.darkg {
     color: var(--color-darkGrey) !important;
+}
+
+.makeBej {
+    background-color: var(--color-bej);
+}
+
+.fontSatisfy {
+    font-family: var(--font-Satisfy);
+    font-size: 1.5rem;
+}
+.colorYellow{
+    color: var(--color-yellow);
+}
+.pizza {
+    width: 20rem;
+    padding: 1rem;
+    background-color: white;
+    margin: 1rem;
+    font-family: var(--font-Barlow);
+}
+
+.pizza :hover {
+    background-color: var(--color-bej);
+}
+
+.pizza h2 {
+    font-size: large;
+    font-weight: 600;
+}
+
+footer {
+    background-color: var(--color-darkGrey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 2rem;
+    color: var(--color-bej) !important;
+}
+
+.footerSection {
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.footerSection div {
+    margin: 1rem;
+    width: 25vw;
+}
+
+.contact {
+    text-align: left !important;
+}
+
+.contact a {
+    display: flex;
+    padding: .5rem;
+    text-decoration: none;
+    color: var(--color-bej);
+}
+
+.contact img {
+    display: flex;
+    margin-right: 1rem;
+}
+
+.contact h1 {
+    padding: 1rem;
+}
+
+@media (max-width:600px) {
+    .footerSection {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cards {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .bigCard {
+        width: 50vw;
+        height: 40vw;
+    }
+
+    .lowCard {
+        width: 50vw;
+        margin-bottom: 1rem;
+    }
+
+    .photos {
+        flex-wrap: nowrap !important;
+    }
 }

@@ -61,13 +61,14 @@
 }
 
 .orderpage {
-    width: 99vw;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: var(--font-Barlow) !important;
     justify-content: space-between;
-
+background-color: white;
+margin-bottom: 2rem ;
 }
 
 .allMargin {
@@ -114,7 +115,7 @@
     flex-direction: column;
     min-width: 50vw;
     margin: 0 15rem;
-    max-width:20vw
+    max-width: 20vw
 }
 
 .productData {
@@ -190,25 +191,48 @@ button {
     font-weight: bold;
 }
 
-footer {
-    margin: 5rem;
+.makeWhite {
+    background-color: white;
+}
+
+.orderCompletedSection {
+    padding: 5rem;
+    background-color: var(--color-red);
+    color: var(--color-bej);
+    font-family: var(--font-Barlow);
+    height: 100vh;
+}
+
+.ordercompdiv {
+    border-bottom: var(--color-bej) 1px solid;
+    margin: 1rem 0;
+}
+
+.ordercompIn {
+    padding: 2rem 5rem;
+}
+
+.borderB {
+    border: var(--color-bej) 1px solid;
+    padding: 1rem;
 }
 
 @media (max-width:600px) {
     .orderButton {
         width: 5vw;
         min-width: 30vw;
-       align-self: flex-end;
+        align-self: flex-end;
     }
-    
+
     .orderDivIn {
-        margin-bottom:2rem;
+        margin-bottom: 2rem;
         width: 50vw;
-        margin-left:-5rem;
-        margin-right:1.5rem
+        margin-left: -5rem;
+        margin-right: 1.5rem
     }
-    .unitContainer{
-        margin-top:13.6rem;
-        
+
+    .unitContainer {
+        margin-top: 13.6rem;
+
     }
 }

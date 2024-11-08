@@ -1,16 +1,16 @@
 import { Label, Input, FormGroup } from 'reactstrap';
 
-function Materials({ materialName,isvalid }) {
+function Materials({ materialName, isvalid }) {
 
     return (
         <>
             <FormGroup check inline key={materialName}>
                 <Label check>
-                    <Input type="checkbox" name={materialName} invalid={isvalid}/>
+                    <Input type="checkbox" name={materialName} invalid={isvalid} />
                     {materialName}
                 </Label>
             </FormGroup>
-          
+
         </>
     );
 }
