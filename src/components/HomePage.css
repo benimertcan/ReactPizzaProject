@@ -27,7 +27,7 @@
 
 /*{border: 1px purple solid;}*/
 .homePageHeader {
-    background-image: url("public/homepage/home-banner.png");
+    background-image: url("/public/homepage/home-banner.png");
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -139,7 +139,7 @@
 }
 
 .bigCard {
-    background-image: url("public/products/cta/kart-1.png");
+    background-image: url("/public/products/cta/kart-1.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -175,7 +175,7 @@
 }
 
 .lowCard {
-    background-image: url("public/products/cta/kart-2.png");
+    background-image: url("/public/products/cta/kart-2.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -198,7 +198,7 @@
 }
 
 .lowCard2 {
-    background-image: url("public/products/cta/kart-3.png");
+    background-image: url("/public/products/cta/kart-3.png");
 }
 
 .darkg {
