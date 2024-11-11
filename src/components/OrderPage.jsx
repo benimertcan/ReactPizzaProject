@@ -163,7 +163,7 @@ function OrderPage({ pizzaData,setChoosenOne }) {
                 {/*Header Start*/}
                 <header className='orderHeader'>
                     <div className='headerIn'>
-                        <img className='logo' src='public\homepage\logo.svg' />
+                        <img className='logo' src='\homepage\logo.svg' />
                         <div className='links'>
                             <NavLink
                                 className='opacity'

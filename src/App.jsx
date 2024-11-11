@@ -11,17 +11,17 @@ function App() {
     {
       pizzaName: "Terminal Pizza",
       pizzaPrice: "60",
-      path: "/public/products/pictures/food-1.png",
+      path: "/products/pictures/food-1.png",
     },
     {
       pizzaName: "Position Absolute Acı Pizza",
       pizzaPrice: "60",
-      path: "/public/products/pictures/food-2.png",
+      path: "/products/pictures/food-2.png",
     },
     {
       pizzaName: "useEffect Tavuklu Burger",
       pizzaPrice: "60",
-      path: "/public/products/pictures/food-3.png",
+      path: "/products/pictures/food-3.png",
     },
   ];
 
