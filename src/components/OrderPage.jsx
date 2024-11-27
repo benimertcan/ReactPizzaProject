@@ -149,7 +149,7 @@ function OrderPage({ pizzaData,setChoosenOne }) {
         axios
         .post(url, datas)
         .then((response) => {
-            setChoosenOne(datas)
+            setChoosenOne({...datas,materialsP:materialPrice,totalP:price})
             console.log(response)
             orderCompleted();
         }).catch((error) => {

@@ -35,11 +35,11 @@ function OrderCompleted({ pizzaData }) {
                         <div className='displayCol centerAll'>
                             <div className='spaceBetween '>
                                 <p>Seçimler</p>
-                                <p>{ }₺</p>
+                                <p>{pizzaData.materialsP }₺</p>
                             </div>
                             <div className='spaceBetween '>
                                 <p>Toplam</p>
-                                <p>{ }₺</p>
+                                <p>{ pizzaData.totalP}₺</p>
                             </div>
                         </div>
                     </div>
