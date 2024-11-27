@@ -53,7 +53,7 @@
     color: var(--color-bej);
     font-size: 4rem;
     line-height: 1.3em;
-
+    
 }
 
 .aciktimButton {
@@ -274,7 +274,7 @@ footer {
     padding: 1rem;
 }
 
-@media (max-width:600px) {
+@media (max-width:500px) {
     .footerSection {
         display: flex;
         flex-direction: column;
@@ -287,16 +287,19 @@ footer {
     }
 
     .bigCard {
-        width: 50vw;
-        height: 40vw;
+        width: 70vw;
+        height: 70vw;
     }
 
     .lowCard {
-        width: 50vw;
+        width: 70vw;
+        height: 70vw;
         margin-bottom: 1rem;
     }
-
-    .photos {
-        flex-wrap: nowrap !important;
+    .text {
+        display: flex;
+        flex-wrap: nowrap;
+        
     }
+   
 }

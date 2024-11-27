@@ -113,7 +113,7 @@ margin-bottom: 2rem ;
     color: var(--color-darkGrey);
     display: flex;
     flex-direction: column;
-    min-width: 50vw;
+    min-width: 70vw;
     margin: 0 15rem;
     max-width: 20vw
 }
@@ -226,7 +226,7 @@ button {
 
     .orderDivIn {
         margin-bottom: 2rem;
-        width: 50vw;
+        width: 70vw;
         margin-left: -5rem;
         margin-right: 1.5rem
     }

@@ -14,7 +14,7 @@ function Footer() {
                         <img src='/products/footer/logo-footer.svg' />
                         <a href="#" className='flexWrap'>
                             <img src='/products/footer/icons/icon-1.png' />
-                            341 Londonderry Road, İstanbul Türkiye
+                           <a> 341 Londonderry Road, İstanbul Türkiye</a>
                         </a>
                         <a href="mailto:aciktim@teknolojikyemekler.com" className='flexWrap'>
                             <img src='/products/footer/icons/icon-2.png' />
@@ -22,7 +22,7 @@ function Footer() {
                         </a>
                         <a href="tel:+902161234567" className='flexWrap'>
                             <img src='/products/footer/icons/icon-3.png' />
-                            +90 216 123 45 67
+                           <p> +90 216 123 45 67</p>
                         </a>
                     </div>
                     <div className='displayCol flexStart contact'>
@@ -48,12 +48,12 @@ function Footer() {
                     </div>
                     <div className='flexStart contact flexWrap '>
                         <h2>Instagram</h2>
-                        <div className='displayRow photos flexWrap'>
+                        <div className='displayRow flexWrap '>
                             <img src='/products/footer/insta/li-0.png' />
                             <img src='/products/footer/insta/li-1.png' />
                             <img src='/products/footer/insta/li-2.png' />
                         </div>
-                        <div className='displayRow photos flexWrap'>
+                        <div className='displayRow flexWrap '>
                             <img src='/products/footer/insta/li-3.png' />
                             <img src='/products/footer/insta/li-4.png' />
                             <img src='/products/footer/insta/li-5.png' />
